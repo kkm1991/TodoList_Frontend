@@ -7,15 +7,33 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: HomeView
+      
+      component: HomeView,
+      props: true, 
     },
     {
       path:'/home',
       name:'Home',
-      component:()=>import('../views/TodoList.vue')
+      component:()=>import('../views/TodoList.vue'),
+     
+      beforeEnter:(to,from,next) =>{
+         if(from.name=='login'){
+          next();
+         }
+         else{
+          next({name:'login'})
+         }
+      }
+    },
+    {
+      path:'/register',
+      name:'Register',
+      component:()=>import('../views/RegisterPage.vue'),
     }
      
   ]
+  
 })
+ 
 
 export default router

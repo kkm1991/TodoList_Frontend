@@ -24,6 +24,7 @@
         </div>
         <div class="text-center">
             <button class="btn btn-dark my-4 btn-lg w-100 " @click="login"> Login</button>
+             <router-link to="/register" class="text-decoration-none">Register</router-link>
         </div>
         
       </div>
@@ -32,7 +33,7 @@
 </template>
 
 <script setup>
- import { ref,reactive } from 'vue';
+ import { ref,reactive,onMounted} from 'vue';
  import axios from 'axios'
  import {useCounterStore} from '../stores/counter'
  import { useTaskStore } from '../stores/taskStore';
@@ -40,25 +41,29 @@
  const router=useRouter()
  const authstore=useCounterStore()
  const taskStore=useTaskStore()
- const userstatus=ref(false)
+
  const loginData = reactive({
     email:"",
     password:""
  })
 
+  
+
+ 
  const login=()=>{
     axios.post('http://localhost:8000/api/login',loginData).then((res)=>{
         if(res.data.token==null){
-            userstatus.value=false
+           authstore.loginstatus=false
         }
         else{
             authstore.setToken(res.data.token)
             authstore.setuserData(res.data.user)
-            userstatus.value=true
+            authstore.loginstatus=true
             taskStore.loadtasklist(res.data.todolist)
              router.push({
                 name:'Home'
                })
+
         }
     })
  }

@@ -1,9 +1,12 @@
 import { ref, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
-
+import router from '@/router'
+import { useTaskStore } from './taskStore'
 export const useCounterStore = defineStore('counter', () => {
 
    //Auth Start
+   const loginstatus=ref(false) //logout button လေးအပေါ်အဖျောက်လုပ်ဖို.အတွက်
+   const taskStore=useTaskStore()
    const loginData=reactive({
     token: localStorage.getItem('token') || null,
     userdata:localStorage.getItem('userData')||null
@@ -21,9 +24,14 @@ export const useCounterStore = defineStore('counter', () => {
     loginData.token=null,
     localStorage.removeItem('token')
     localStorage.removeItem('userData')
+    taskStore.state.tasklist=[]
+    loginstatus.value=false
+      router.push({
+         name:'login'
+      })
    }
    //Auth end
    
 
-  return { loginData, setToken, setuserData , clearToken }
+  return { loginData, setToken, setuserData , clearToken ,loginstatus }
 })

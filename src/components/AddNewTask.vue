@@ -19,7 +19,7 @@ const authstore=useCounterStore(); //user_id စတဲ့အချက်အလ�
 const newTask=ref('');
  
  
-const userData = authstore.loginData.userdata ? JSON.parse(authstore.loginData.userdata) : null; 
+const userData = authstore.loginData.userdata; 
 
 const addtask=()=>{
             const newTaskDataToAdd={

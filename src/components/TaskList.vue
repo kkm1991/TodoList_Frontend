@@ -64,9 +64,10 @@ const addDone = (task) => {
   const doneData = {
     isDone: !task.isDone,
     task_id: task.id,
+    user_id:task.user_id
   };
   axios
-    .post("http://localhost:8000/api/task/addDone/", doneData, {
+    .post("http://todolistapi.kkm.logikamyanmar.com/api/task/addDone", doneData, {
       headers: {
         Authorization: `Bearer ${authstore.loginData.token}`,
         Accept: "application/json",
@@ -95,8 +96,9 @@ const addFav = (task) => {
     const Favdata = {
       isFav: !task.isFav,
       task_id: task.id,
+      user_id:task.user_id
     };
-    axios.post("http://localhost:8000/api/task/addFav/", Favdata, {
+    axios.post("http://todolistapi.kkm.logikamyanmar.com/api/task/addFav", Favdata, {
       headers: {
         Authorization: `Bearer ${authstore.loginData.token}`,
         Accept: "application/json",
@@ -116,9 +118,10 @@ const addFav = (task) => {
   //delete task
   const deleteTask=(task)=>{
     const deletetask={
-      task_id:task.id
+      task_id:task.id,
+      user_id:task.user_id
     }
-    axios.post("http://localhost:8000/api/task/delete/",deletetask,{
+    axios.post("http://todolistapi.kkm.logikamyanmar.com/api/task/delete",deletetask,{
       headers:{
       Authorization:`Bearer ${authstore.loginData.token}`,
       Accept:"application/json"

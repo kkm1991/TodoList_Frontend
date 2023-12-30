@@ -38,6 +38,9 @@
  import {useCounterStore} from '../stores/counter'
  import { useTaskStore } from '../stores/taskStore';
  import { useRouter } from 'vue-router';
+ import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+
  const router=useRouter()
  const authstore=useCounterStore()
  const taskStore=useTaskStore()
@@ -47,24 +50,34 @@
     password:""
  })
 
-  
+ const showalert = (para2) => {
+  toast.error( para2, {
+    position: "top-right", // You can customize the position
+    autoClose: 3000, // Notification will automatically close after 3 seconds
+    closeOnClick: true, // Close the notification when clicked
+  });
+};
 
  
  const login=()=>{
-    axios.post('http://localhost:8000/api/login',loginData).then((res)=>{
+    axios.post('http://todolistapi.kkm.logikamyanmar.com/api/login',loginData).then((res)=>{
         if(res.data.token==null){
            authstore.loginstatus=false
         }
         else{
-            authstore.setToken(res.data.token)
+            
+              authstore.setToken(res.data.token)
             authstore.setuserData(res.data.user)
             authstore.loginstatus=true
             taskStore.loadtasklist(res.data.todolist)
              router.push({
                 name:'Home'
                })
+            }
 
-        }
+        
+    }).catch((error)=>{
+      showalert("Login Information incorrect")
     })
  }
 

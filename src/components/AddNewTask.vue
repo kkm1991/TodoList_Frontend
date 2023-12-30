@@ -26,7 +26,7 @@ const addtask=()=>{
             task_name:newTask.value,
             user_id:userData.id
             };
-            axios.post('http://todolistapi.kkm.logikamyanmar.com/api/task/add',newTaskDataToAdd,{
+            axios.post('https://todolistapi.kkm.logikamyanmar.com/api/task/add',newTaskDataToAdd,{
               headers:{
                 'Authorization':`Bearer ${authstore.loginData.token}`,
                 'Accept':'application/json'}

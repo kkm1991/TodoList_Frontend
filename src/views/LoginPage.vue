@@ -60,9 +60,10 @@ import "vue3-toastify/dist/index.css";
 
  
  const login=()=>{
-    axios.post('http://todolistapi.kkm.logikamyanmar.com/api/login',loginData).then((res)=>{
+    axios.post('https://todolistapi.kkm.logikamyanmar.com/api/login',loginData).then((res)=>{
         if(res.data.token==null){
            authstore.loginstatus=false
+           showalert("Username or Password incorrect ?")
         }
         else{
             

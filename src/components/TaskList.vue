@@ -67,7 +67,7 @@ const addDone = (task) => {
     user_id:task.user_id
   };
   axios
-    .post("http://todolistapi.kkm.logikamyanmar.com/api/task/addDone", doneData, {
+    .post("https://todolistapi.kkm.logikamyanmar.com/api/task/addDone", doneData, {
       headers: {
         Authorization: `Bearer ${authstore.loginData.token}`,
         Accept: "application/json",
@@ -98,7 +98,7 @@ const addFav = (task) => {
       task_id: task.id,
       user_id:task.user_id
     };
-    axios.post("http://todolistapi.kkm.logikamyanmar.com/api/task/addFav", Favdata, {
+    axios.post("https://todolistapi.kkm.logikamyanmar.com/api/task/addFav", Favdata, {
       headers: {
         Authorization: `Bearer ${authstore.loginData.token}`,
         Accept: "application/json",
@@ -121,7 +121,7 @@ const addFav = (task) => {
       task_id:task.id,
       user_id:task.user_id
     }
-    axios.post("http://todolistapi.kkm.logikamyanmar.com/api/task/delete",deletetask,{
+    axios.post("https://todolistapi.kkm.logikamyanmar.com/api/task/delete",deletetask,{
       headers:{
       Authorization:`Bearer ${authstore.loginData.token}`,
       Accept:"application/json"

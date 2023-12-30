@@ -102,7 +102,7 @@ const register=()=>{
         showalert('Password do not match')
     }
     else{
-        axios.post('http://todolistapi.kkm.logikamyanmar.com/api/register',registerdata).then((res)=>{
+        axios.post('https://todolistapi.kkm.logikamyanmar.com/api/register',registerdata).then((res)=>{
 
           
           
